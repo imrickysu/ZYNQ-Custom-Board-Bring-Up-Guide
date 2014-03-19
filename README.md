@@ -55,5 +55,24 @@ The default Hello World example application in SDK sets the running memory in DD
 
 ## DDR Memory
 
+### Setting Up DDR3 
+ZYNQ Memory Controller supports training and write leveling for DDR3. For most DDR3 memory components which obey the routing rules, setting up DDR3 is as easy as to input the DDR3 part number and enabling all three DRAM trainings in DDR Configuration.
+
+### Setting Up DDR2
+Since DDR2 training is not supported by ZYNQ, DDR2 board delay details needs to be input into DDR Configuration manually.
+
+* Input DDR2 component part number
+* Select `Training/Board Details` from `User Input` to `Calculated`
+* Input trace length in mm in Board Delay Calculation Table, the DQS to CLK delay and Board delay will be calculated automatically.
+    * If the DDR component only uses one clock, input CLK1, CLK2 and CLK3 length same as CLK0
+
+### Test DDR
+#### Memory Tests Example Application
+
+#### ZYNQ DRAM Test
+
+
+
+
 
 ## Flash
