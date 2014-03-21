@@ -68,11 +68,24 @@ Since DDR2 training is not supported by ZYNQ, DDR2 board delay details needs to 
 
 ### Test DDR
 #### Memory Tests Example Application
+The simple memory test application can be created from `File` -> `New` -> `Application Project` -> `Next` -> `Memory Tests`. By default, it can test first 4096 bytes of every memory region including DDR, OCM and AXI BRAM. If the test fails, it will not provide more information about error rate and error patterns but only print a fail on the screen.
 
 #### ZYNQ DRAM Test
-
-
+The ZYNQ DRAM Test example acts interactively. User needs to type commands in the UART terminal to choose the test function. It's an easy job to run memory test with various sizes. The test result will also show how many errors are encountered and what's the expacted data, what's the real data and what are the wrong bits. This application can be created from `File` -> `New` -> `Application Project` -> `Next` -> `ZYNQ DRAM Test`.
 
 
 
 ## Flash
+### Programming Flash from SDK
+
+### Programming Flash from example designs
+
+### Programming Flash from u-boot
+
+### Boot From Flash
+
+
+
+## Run u-boot
+
+## Run Linux
