@@ -77,10 +77,17 @@ The ZYNQ DRAM Test example acts interactively. User needs to type commands in th
 
 ## Flash
 ### Programming Flash from SDK
+SDK Program Flash Tool supports to program QSPI, NAND and NOR Flash directly. By simply selecting the MCS/Bin file and click Program button, we can test the Flash peripheral circuit. If `Verify after flash` is selected, the programming program will read and compare the data after program completes. If it report "verification success", we can say the Flash is working properly. For how to generate the program image, please refer to [Prepare Flash Image](#prepare-flash-image)
+
 
 ### Programming Flash from example designs
 
 ### Programming Flash from u-boot
+
+### Prepare Flash Image
+The MCS/Bin ROM file can be prepared by `Xilinx Tools` -> `Prepare ZYNQ Boot Image`. For details about the tool, please refer to its [help](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2013_4/SDK_Doc/tasks/sdk_t_create_zynq_boot_image.htm)
+
+A FSBL application with `DEBUG_FSBL` globally defined during compilation, or an FSBL+Hello World application are good enough to test the Flash programming and Flash boot. 
 
 ### Boot From Flash
 
