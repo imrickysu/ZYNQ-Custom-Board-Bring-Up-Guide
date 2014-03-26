@@ -81,16 +81,50 @@ SDK Program Flash Tool supports to program QSPI, NAND and NOR Flash directly. By
 
 
 ### Programming Flash from example designs
+In <SDK_installation_directory>/sw/ directory, each driver version has a subdirectory. In these directories, there's a `example` subdirectory. All flash controllers have example designs to program the flash, read back and verify. Create new empty applicaitons in SDK and add the related files into the app, then we can know whether ZYNQ is able to write any words into the Flash.
+
+* Prepare the u-boot image with the instructions in [Xilinx Wiki u-boot page](http://www.wiki.xilinx.com/Build+U-Boot#Zynq)
+* Open XMD, connect ARM, initialize ZYNQ, then download u-boot to DDR and run
+```tcl
+# The tcl to initialize ZYNQ and run u-boot
+# "xmd -tcl xx.tcl" to run it when larunching XMD
+# or run "source xx.tcl" inside XMD
+source ps7_init.tcl
+ps7_init
+dow u-boot.elf
+run
+```
+
 
 ### Programming Flash from u-boot
+In the days that SDK programming tools were not ready, u-boot is the best Flash programming tool. The preparation of u-boot image may be a little bit complicated, but it's worth doing it. U-boot still can do some jobs that SDK can't, such as erase the entire Flash chip.
+
 
 ### Prepare Flash Image
 The MCS/Bin ROM file can be prepared by `Xilinx Tools` -> `Prepare ZYNQ Boot Image`. For details about the tool, please refer to its [help](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2013_4/SDK_Doc/tasks/sdk_t_create_zynq_boot_image.htm)
 
-A FSBL application with `DEBUG_FSBL` globally defined during compilation, or an FSBL+Hello World application are good enough to test the Flash programming and Flash boot. 
+To check whether ZYNQ has been boot successfully, the easist way is to see some characters being printed from UART.
+* Create a Hello World app and run it via JTAG to make sure UART works fine. Make an image of FSBL + Hello World. Program it into Flash. Set boot mode to Flash. After power up, if "Hello World" is printed, the Flash boot is successful.
+* Recompile the FSBL with `DEBUG_FSBL` defined in gcc compiler settings. FSBL will then print more details of the stages its running and error messages if it encounters any.
+
 
 ### Boot From Flash
 
+
+## Ethernet
+Ethernet can be connected in various ways for ZYNQ: RGMII though MIO to PHY, GMII/MII though EMIO to FPGA pin to PHY, GMII to SGMII or 1000BASE-X though EMIO to FPGA SERDES to external with or without PHY. 
+
+### Example code
+The emacps driver's example code is the simplest standalone test application. Create a new empty application and add the code to it.
+
+The code has some preset #defines for 10M/100M/1000M speed configuration. Modify these #defines to accomondate the real hardware design.
+
+In case the appliation reports some errors when running, try to turn off the DCache of the CPU and run again. The gem uses DMA to transfer data, it's easy to encounter errors when Cache are not set properly. Turning off caches is the simpliest way to get rid of these kind of problems. Of course the real design will need cache, add proper cache fluch and invalidate functions carefully after verified the app works fine because it means the hardware is good.
+
+### U-boot
+U-boot has the ability to send ping packages and fetch boot images via TFTP. So u-boot is also a good test application. The preparation flow is the same as above.
+
+Note that u-boot network funcitons are based on polling rather than interrupt. It doesn't support responding ping packages. It can only send out ping packages (ARP and ICMP).
 
 
 ## Run u-boot
