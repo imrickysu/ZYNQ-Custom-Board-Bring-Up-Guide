@@ -3,6 +3,8 @@
 
 This is a guide for bringing up custom ZYNQ boards. It covers test sequence, test method, common error situations and code and project that can help to investigate a bring-up problem.
 
+Note: This guide assumes developers are famaliar with Vivado and SDK. For more info about Vivado/SDK tutorials, please refer to [UG940](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2013_4/ug940-vivado-tutorial-embedded-design.pdf).
+
 This document is under development. Please feel free to fork and pull.
 
 ## Power
