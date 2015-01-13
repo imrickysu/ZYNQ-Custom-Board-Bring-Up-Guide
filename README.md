@@ -78,6 +78,13 @@ The ZYNQ DRAM Test example acts interactively. User needs to type commands in th
 
 
 ## Flash
+- Check Flash interface Read/Write ability
+- Program Flash from SDK/u-boot
+- Boot from Flash
+  - Understand ZYNQ Boot from Flash flow
+  - Prepare bootloader for debugging booting from Flash
+  - Debug considerations
+
 ### Programming Flash from SDK
 SDK Program Flash Tool supports to program QSPI, NAND and NOR Flash directly. By simply selecting the MCS/Bin file and click Program button, we can test the Flash peripheral circuit. If `Verify after flash` is selected, the programming program will read and compare the data after program completes. If it report "verification success", we can say the Flash is working properly. For how to generate the program image, please refer to [Prepare Flash Image](#prepare-flash-image)
 
@@ -110,7 +117,10 @@ To check whether ZYNQ has been boot successfully, the easist way is to see some 
 * Recompile the FSBL with `DEBUG_FSBL` defined in gcc compiler settings. FSBL will then print more details of the stages its running and error messages if it encounters any.
 
 
-### Boot From Flash
+### Boot From Flash Debug Considerations
+- Check whether BootROM code finished correctly by analyze `INIT_B` status. In Non-Secure mode, if `INIT_B` goes high after power on, BootROM has executed successfully.
+- If the `FSBL_DEBUG_INFO` enabled FSBL is not able to print any data from UART, try to connect JTAG and use XMD to read register `BOOTROM_ERROR_CODE` at 0xF8000258.
+- If FSBL is able to print some error info but not making senses, use SDK to debug FSBL.
 
 
 ## Ethernet
