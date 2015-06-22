@@ -8,6 +8,14 @@ Note: This guide assumes developers are famaliar with Vivado and SDK. For more i
 This document is under development. Please feel free to fork and pull.
 
 ## Power
+### Before Powering Up
+* Make sure there are no shorted circuits between each power rail and GND
+* If Power Management IC is used, make sure the power sequencing is set according to "Power-On/Off Power Supply Sequencing" Chapter in ZYNQ Datasheet
+
+### After Powering Up
+* Check all the power rails should be at the correct voltage
+* PS_POR_B and PS_SRST_B should be high when system is stable
+* Check the PS clock frequency is toggling as expected between 30MHz and 50MHz
 
 ## JTAG
 ZYNQ has several JTAG connection methods. The following description assumes the PS PL cascade JTAG mode is being used. In this mode, JTAG cable is connected to PL Bank 0 JTAG signals. PS_MIO[2] is set to 0. PS and PL should both be seen in JTAG debug software.
