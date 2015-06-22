@@ -10,6 +10,7 @@ This document is under development. Please feel free to fork and pull.
 ## Power
 
 ## JTAG
+ZYNQ has several JTAG connection methods. The following description assumes the PS PL cascade JTAG mode is being used. In this mode, JTAG cable is connected to PL Bank 0 JTAG signals. PS_MIO[2] is set to 0. PS and PL should both be seen in JTAG debug software.
 
 ### Test JTAG via XMD
 * Launch XMD
@@ -29,6 +30,7 @@ This document is under development. Please feel free to fork and pull.
 ### Common Errors ###
 * Only PL logic can be found in JTAG chain. ARM can not be found.
     * MIO_2 controls the selection of Cascaded JTAG and Independent JTAG. If Independent JTAG is selected, ARM cannot be seen in the JTAG chain.
+    * PS_SRST_B should be high after powering up. Otherwise, PS will be held in reset state and only PL will be seen in the JTAG chain.
 
 
 ### Known Issues ###
