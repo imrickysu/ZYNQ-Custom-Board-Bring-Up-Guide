@@ -12,7 +12,9 @@ This document is under development. Please feel free to fork and pull.
 ## JTAG
 
 ### Test JTAG via XMD
-* Run `Xilinx Microprocessor Debugger` from Windows start menu -> Xilinx Design Suite -> Vivado -> SDK, or type `xmd` in Linux console after `source settings.sh`
+* Launch XMD
+    * In Windows: run `Xilinx Microprocessor Debugger` from Windows start menu -> Xilinx Design Suite -> Vivado -> SDK
+    * In Linux: run `source settings(32/64).(sh/csh)` within Vivado installation directory, then type `xmd` in Linux console
 * Run `connect arm hw` and check the output
     * If connect successful, it shows <place holder for connect success screenshot>
     * If unsuccessful, check JTAG cable connection, power sequence, power connection and clock connection
