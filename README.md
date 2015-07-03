@@ -34,6 +34,8 @@ Device   ID Code        IR Length    Part Name
 1       4ba00477           4        arm_dap
 2       23731093           6        xc7z045
 ```
+
+
     * If unsuccessful, check JTAG cable connection, power sequence, power connection and clock connection
 * Try to read and write OCM via XMD
     * `mrd 0x00001000`
