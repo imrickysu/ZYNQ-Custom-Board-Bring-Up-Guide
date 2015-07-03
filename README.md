@@ -5,6 +5,8 @@ This is a guide for bringing up custom ZYNQ boards. It covers test sequence, tes
 
 Note: This guide assumes developers are famaliar with Vivado and SDK. For more info about Vivado/SDK tutorials, please refer to [UG940](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2013_4/ug940-vivado-tutorial-embedded-design.pdf).
 
+For how a ZYNQ board should be designed, please refer to [UG1046](http://www.xilinx.com/support/documentation/sw_manuals/ug1046-ultrafast-design-methodology-guide.pdf) Ultrafast Embedded Methodology Guide
+
 This document is under development. Please feel free to fork and pull.
 
 ## Power
