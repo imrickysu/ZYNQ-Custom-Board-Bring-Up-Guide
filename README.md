@@ -25,6 +25,7 @@ ZYNQ has several JTAG connection methods. The following description assumes the 
     * In Windows: run `Xilinx Microprocessor Debugger` from Windows start menu -> Xilinx Design Suite -> Vivado -> SDK
     * In Linux: run `source settings(32/64).(sh/csh)` within Vivado installation directory, then type `xmd` in Linux console
 * Run `connect arm hw` and check the output
+    * If unsuccessful, check JTAG cable connection, power sequence, power connection and clock connection
     * If connect successful, it shows
 
 ```
@@ -36,7 +37,7 @@ Device   ID Code        IR Length    Part Name
 ```
 
 
-    * If unsuccessful, check JTAG cable connection, power sequence, power connection and clock connection
+
 * Try to read and write OCM via XMD
     * `mrd 0x00001000`
     * `mwr 0x00001000 0x12345678`
