@@ -146,7 +146,13 @@ To check whether ZYNQ has been boot successfully, the easist way is to see some 
 
 ### Boot From Flash Debug Considerations
 - Check whether BootROM code finished correctly by analyze `INIT_B` status. In Non-Secure mode, if `INIT_B` goes high after power on, BootROM has executed successfully.
-- If the `FSBL_DEBUG_INFO` enabled FSBL is not able to print any data from UART, try to connect JTAG and use XMD to read register `BOOTROM_ERROR_CODE` at 0xF8000258.
+- If the `FSBL_DEBUG_INFO` enabled FSBL is not able to print any data from UART, try to connect JTAG and use XMD to read register `BOOTROM_ERROR_CODE` at `slcr.REBOOT_STATUS(0xF8000258)`.
+    - slcr.REBOOT_STATUS[15:0] is BOOTROM_ERROR_CODE. Check UG585 Chapter 6.3.12 for details about the error codes
+    - FSBL modifies slcr.REBOOT_STATUS[31:28]. 0xF = FSBL Fail; 0x6 = FSBL In.
+- Check `devcfg.MULTIBOOT_ADDR(0xF800702C)`
+    - If LSB 12 bit is 0x200, 16MB has been scanned.
+    - If LSB 12 bit is 0x400, 32MB has been scanned.
+    - BootROM max scan range is 16MB for single QSPI mode and 32MB for dual QSPI mode.
 - If FSBL is able to print some error info but not making senses, use SDK to debug FSBL.
 
 
