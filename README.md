@@ -27,12 +27,13 @@ ZYNQ has several JTAG connection methods. The following description assumes the 
 * Run `connect arm hw` and check the output
     * If connect successful, it shows
 
-> JTAG chain configuration
-> --------------------------------------------------
-> Device   ID Code        IR Length    Part Name
-> 1       4ba00477           4        arm_dap
-> 2       23731093           6        xc7z045
+```
+JTAG chain configuration
 
+Device   ID Code        IR Length    Part Name
+1       4ba00477           4        arm_dap
+2       23731093           6        xc7z045
+```
     * If unsuccessful, check JTAG cable connection, power sequence, power connection and clock connection
 * Try to read and write OCM via XMD
     * `mrd 0x00001000`
