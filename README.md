@@ -113,8 +113,8 @@ The ZYNQ DRAM Test example acts interactively. User needs to type commands in th
 ### Programming Flash from SDK
 SDK Program Flash Tool supports to program QSPI, NAND and NOR Flash directly. By simply selecting the MCS/Bin file and click Program button, we can test the Flash peripheral circuit. If `Verify after flash` is selected, the programming program will read and compare the data after program completes. If it report "verification success", we can say the Flash is working properly. For how to generate the program image, please refer to [Prepare Flash Image](#prepare-flash-image)
 
-* If Flash Erase Page Size > 64KB, extra environment variable needs to be set. Details in [AR60539](http://www.xilinx.com/support/answers/60539.html)
-* If SDK Flash Programmer fails, setting environment variable XIL_CSE_ZYNQ_DISPLAY_UBOOT_MESSAGES = 1 can show more debug info. [AR59272](http://www.xilinx.com/support/answers/59272.html)
+* If Flash Erase Page Size > 64KB, extra environment variable `XIL_CSE_ZYNQ_FLASH_SECTOR_SIZE` needs to be set. Details in [AR60539](http://www.xilinx.com/support/answers/60539.html)
+* If SDK Flash Programmer fails, setting environment variable `XIL_CSE_ZYNQ_DISPLAY_UBOOT_MESSAGES = 1` can show more debug info. [AR59272](http://www.xilinx.com/support/answers/59272.html)
 * If the Flash part is not supported by SDK Flash Programmer, creating a custom u-boot to program Flash is needed.
 
 
