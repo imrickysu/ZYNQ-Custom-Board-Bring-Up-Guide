@@ -98,7 +98,7 @@ Since DDR2 training is not supported by ZYNQ, DDR2 board delay details needs to 
 The simple memory test application can be created from `File` -> `New` -> `Application Project` -> `Next` -> `Memory Tests`. By default, it can test first 4096 bytes of every memory region including DDR, OCM and AXI BRAM. If the test fails, it will not provide more information about error rate and error patterns but only print a fail on the screen.
 
 #### ZYNQ DRAM Test
-The ZYNQ DRAM Test example acts interactively. User needs to type commands in the UART terminal to choose the test function. It's an easy job to run memory test with various sizes. The test result will also show how many errors are encountered and what's the expacted data, what's the real data and what are the wrong bits. This application can be created from `File` -> `New` -> `Application Project` -> `Next` -> `ZYNQ DRAM Test`.
+The ZYNQ DRAM Test example acts interactively. User needs to type commands in the UART terminal to choose the test function. It's an easy job to run memory test with various sizes. The test result will also show how many errors are encountered and what the expected data is, what the real data is and what the wrong bits are. This application can be created from `File` -> `New` -> `Application Project` -> `Next` -> `ZYNQ DRAM Test`.
 
 
 
@@ -141,7 +141,7 @@ In the days that SDK programming tools were not ready, u-boot is the best Flash 
 ### Prepare Flash Image
 The MCS/Bin ROM file can be prepared by `Xilinx Tools` -> `Prepare ZYNQ Boot Image`. For details about the tool, please refer to its [help](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2013_4/SDK_Doc/tasks/sdk_t_create_zynq_boot_image.htm)
 
-To check whether ZYNQ has been boot successfully, the easist way is to see some characters being printed from UART.
+To check whether ZYNQ has been boot successfully, the easiest way is to see some characters being printed from UART.
 * Create a Hello World app and run it via JTAG to make sure UART works fine. Make an image of FSBL + Hello World. Program it into Flash. Set boot mode to Flash. After power up, if "Hello World" is printed, the Flash boot is successful.
 * Recompile the FSBL with `DEBUG_FSBL` defined in gcc compiler settings. FSBL will then print more details of the stages its running and error messages if it encounters any.
 
