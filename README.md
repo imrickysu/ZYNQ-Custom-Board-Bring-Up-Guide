@@ -65,9 +65,9 @@ Device   ID Code        IR Length    Part Name
 The default Hello World example application in SDK sets the running memory in DDR. If DDR has not been initialized properly, Hello World app won't be run successfully. The best way to test UART is to run the Hello World in OCM.
 
 * Create a ZYNQ design in Vivado
-    * Configure Reference Clock
-    * Setup UART pin
-    * Generate output products and export to SDK
+    * Configure Reference Clock `Clock Configuration -> Input Frequency`
+    * Setup UART pin `MIO Configuration -> IO Peripherals -> UART 0/1`
+    * Generate output products and export to SDK `IP Integrator -> Generate Block Design`
 * Create the Hello World app in OCM
     *  Create a workspace
     *  Create a BSP and import the Vivado exported XML
