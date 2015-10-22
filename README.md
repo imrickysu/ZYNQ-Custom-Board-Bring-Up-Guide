@@ -156,6 +156,7 @@ To check whether ZYNQ has been boot successfully, the easiest way is to see some
     - If LSB 12 bit is 0x400, 32MB has been scanned.
     - BootROM max scan range is 16MB for single QSPI mode and 32MB for dual QSPI mode.
 - If FSBL is able to print some error info but not making senses, use SDK to debug FSBL.
+- If FSBL is not able to print anything, try to trigger `POR_B` without powering off the whole board. If it works this way, please check the power on sequencing of ZYNQ and its peripherals. For example, QSPI Flash may not be ready when ZYNQ is reading from it.
 
 
 ## Ethernet
