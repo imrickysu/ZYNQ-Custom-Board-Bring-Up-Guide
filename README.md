@@ -7,12 +7,25 @@ Note: This guide assumes developers are famaliar with Vivado and SDK. For more i
 
 For how a ZYNQ board should be designed, please refer to [UG1046](http://www.xilinx.com/support/documentation/sw_manuals/ug1046-ultrafast-design-methodology-guide.pdf) Ultrafast Embedded Methodology Guide
 
-This document is under development. Please feel free to fork and pull.
+This document is under development. Please feel free to fork and provide pull requests.
+
+## Bring Up Plan
+Generally the board bring up process follows a rule from basic to specific.
+
+- Power should be checked first
+- JTAG connection is the main debug channel. So it should be checked next. It can be used to verify CPU clock, PLL, basic functions and FPGA functions.
+- UART is the main way for ARM applications to communicate with host PC. We use a simple Hello World application running on OCM to test it.
+- Most systems use external DDR. It needs to be tested before running any large applications such as u-boot and Linux.
+- Flash can be tested via SDK or u-boot.
+- Ethernet can be tested by u-boot, Linux or standalone applications.
+- If any other peripherals are used, they can then be tested based on u-boot or Linux platform. If any issue happens, we can go back to standalone app to test the peripheral to eliminate the impact from OS.
+
+
 
 ## Power
 ### Before Powering Up
 * Make sure there are no shorted circuits between each power rail and GND
-* If Power Management IC is used, make sure the power sequencing is set according to "Power-On/Off Power Supply Sequencing" Chapter in ZYNQ Datasheet
+* Make sure the power on/off sequencing is designed according to "Power-On/Off Power Supply Sequencing" Chapter in ZYNQ Datasheet. Power management IC is recommended to control and adjust the power sequence. If the power sequence guide is not followed, ZYNQ may fail to work or be damaged. ([AR65240](http://www.xilinx.com/support/answers/65240.html))
 
 ### After Powering Up
 * Check all the power rails should be at the correct voltage
@@ -26,7 +39,7 @@ ZYNQ has several JTAG connection methods. The following description assumes the 
 * Launch XMD
     * In Windows: run `Xilinx Microprocessor Debugger` from Windows start menu -> Xilinx Design Suite -> Vivado -> SDK
     * In Linux: run `source settings(32/64).(sh/csh)` within Vivado installation directory, then type `xmd` in Linux console
-* Run `connect arm hw` and check the output
+* Run `connect arm hw` in XMD and check the output
     * If unsuccessful, check JTAG cable connection, power sequence, power connection and clock connection
     * If connect successful, it shows
 
@@ -41,12 +54,13 @@ Device   ID Code        IR Length    Part Name
 
 
 * Try to read and write OCM via XMD
-    * `mrd 0x00001000`
-    * `mwr 0x00001000 0x12345678`
-    * `mrd 0x00001000`
+    * `mrd 0x00001000` - `mrd` means memory read.
+    * `mwr 0x00001000 0x12345678` - write something to OCM
+    * `mrd 0x00001000` - check write result
+    * 0x00000000 to 0x0002FFFF is the OCM address after boot
 * Try to program a bit file
-    * How to prepare a bit file is not covered in this doc. Refer to CTT-ZYNQ.pdf for the process.
-    * Run `fpga -f download.bit` to program the bit file
+    * How to prepare a bit file is not covered in this doc. Refer to UG940 or CTT-ZYNQ.pdf for the process.
+    * Run `fpga -f download.bit` in XMD to program the bit file
 
 ### Common Errors ###
 * Only PL logic can be found in JTAG chain. ARM can not be found.
@@ -78,7 +92,7 @@ The default Hello World example application in SDK sets the running memory in DD
 * Connect UART console in host PC
 * Run the Hello World app by Right Click the app, select `Run As` -> `Launch on Hardware`
     * The "Hello World" should be printed
-    * If it's not printed, it means something goes wrong. Try `Debug As` -> `Launch on Hardware (System Debugger)`. If the debugger can stop at main(), it means the function can be executed, clock and PLL are working, but UART is not configured properly or UART circuit on PCB board has some issues. 
+    * If it's not printed, it means something goes wrong. Try `Debug As` -> `Launch on Hardware (System Debugger)`. If the debugger can stop at main(), it means the function can be executed, clock and PLL are working, but UART is not configured properly, UART circuit on PCB board has some issues, or PC UART driver/console is not setup correctly. 
 
 ## DDR Memory
 
