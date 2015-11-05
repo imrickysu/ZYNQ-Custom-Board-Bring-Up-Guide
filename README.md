@@ -86,9 +86,10 @@ The default Hello World example application in SDK sets the running memory in DD
     *  Create a workspace
     *  Create a BSP and import the Vivado exported XML
     *  Create a new application and select the Hello World template
+* Modify Linker Script to make Hello World app run in OCM
     *  Right Click the Hello World app, select `Generate Linker Script`
     *  In Basic Tab, set all sections in `ps7_ram_0_S_AXI_BASEADDR` from the drop down menu
-    *  Save and recompile the app
+    *  Save. SDK will generate lscript.ld and recompile the app automatically
 * Connect UART console in host PC
 * Run the Hello World app by Right Click the app, select `Run As` -> `Launch on Hardware`
     * The "Hello World" should be printed
