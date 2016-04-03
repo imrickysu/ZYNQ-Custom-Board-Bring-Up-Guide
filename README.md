@@ -20,6 +20,17 @@ Generally the board bring up process follows a rule from basic to specific.
 - Ethernet can be tested by u-boot, Linux or standalone applications.
 - If any other peripherals are used, they can then be tested based on u-boot or Linux platform. If any issue happens, we can go back to standalone app to test the peripheral to eliminate the impact from OS.
 
+## The Vivado Project ##
+A Vivado Project is needed before any software based check is run, e.g. Hello World for UART. The ZYNQ processor initialization configurations are set in Vivado. It is suggested that the settings of PS is added one after another after it is verified to work on hardware. Otherwise, if the CPU doesn't come up perfectly, it's hard to know what's wrong.
+
+Here's a list of the essential settings for first time boot
+- Input of PS Clock (PS_CLK) Speed. Target CPU speed would be set to around 666M automatically. No need to change.
+- MIO Bank voltage
+- UART pin number
+- UART baud rate is set to 115200 by default, no need to change.
+- DDR can be disabed at first.
+
+This is the smallest system to be tested. More features can be enabled after basic features have been verified.
 
 
 ## Power
