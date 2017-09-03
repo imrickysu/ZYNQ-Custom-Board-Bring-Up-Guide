@@ -198,7 +198,7 @@ In case the appliation reports some errors when running, try to turn off the DCa
 ### U-boot
 U-boot has the ability to send ping packages and fetch boot images via TFTP. So u-boot is also a good test application. The preparation flow is the same as above.
 
-Note that u-boot network funcitons are based on polling rather than interrupt. It doesn't support responding ping packages. It can only send out ping packages (ARP and ICMP).
+Note that u-boot network functions are based on polling rather than interrupt. It doesn't support responding ping packages. It can only send out ping packages (ARP and ICMP).
 
 
 ## Run u-boot
