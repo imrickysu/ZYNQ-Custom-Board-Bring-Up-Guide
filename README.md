@@ -50,6 +50,7 @@ ZYNQ has several JTAG connection methods. The following description assumes the 
 * Launch XMD
     * In Windows: run `Xilinx Microprocessor Debugger` from Windows start menu -> Xilinx Design Suite -> Vivado -> SDK
     * In Linux: run `source settings(32/64).(sh/csh)` within Vivado installation directory, then type `xmd` in Linux console
+    * XMD is replaced by XSCT in the latest version of SDK. Connect command is simplified. Memory read/write command doesn't change.
 * Run `connect arm hw` in XMD and check the output
     * If unsuccessful, check JTAG cable connection, power sequence, power connection and clock connection
     * If connect successful, it shows
@@ -61,7 +62,7 @@ Device   ID Code        IR Length    Part Name
 1       4ba00477           4        arm_dap
 2       23731093           6        xc7z045
 ```
-
+* In XSCT, use `connect` to connect to the JTAG server `hw_server` and use `target` to list the devices in the chain, use `target <number>` to choose which target device to connect.
 
 
 * Try to read and write OCM via XMD
@@ -104,7 +105,8 @@ The default Hello World example application in SDK sets the running memory in DD
 * Connect UART console in host PC
 * Run the Hello World app by Right Click the app, select `Run As` -> `Launch on Hardware`
     * The "Hello World" should be printed
-    * If it's not printed, it means something goes wrong. Try `Debug As` -> `Launch on Hardware (System Debugger)`. If the debugger can stop at main(), it means the function can be executed, clock and PLL are working, but UART is not configured properly, UART circuit on PCB board has some issues, or PC UART driver/console is not setup correctly. 
+    * If it's not printed, it means something goes wrong. Try `Debug As` -> `Launch on Hardware (System Debugger)`. If the debugger can stop at main(), it means the initialization by ps7_init.tcl is passed, clock, PLL and DDR have been initialized properly. Hello world application has a proper environment to run but UART may not be configured properly, UART circuit on PCB board has some issues, or PC UART driver/console is not setup correctly.
+    * If XMD/XSCT console stops at "executing psu_init()" but the debugger cannot stop at main() of hello world function, it means the initialization doesn't pass. Check hardware settings in Vivado and PCB circuit.
 
 ## DDR Memory
 
